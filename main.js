@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const provider = new ethers.providers.JsonRpcProvider('https://distinguished-prettiest-bush.bsc.quiknode.pro/6153a7f2821e488f5a6565c160460c2727727898/') 
 
-const mnemonic = 'puzzle guard air express flame other return slot price wrap engage swift';
+const mnemonic = 'truth sadness whip bottom grit nature caught vacant evil novel air vintage';
 
 const hdNode = utils.HDNode.fromMnemonic(mnemonic);
 
@@ -28,7 +28,7 @@ async function getAccount(){
         fs.appendFile('address.txt', content, err =>{
             if(err){
                 console.error(err);}});
-        if(a.address == '0x933f93F0d74623c47Eb52639b5DB651e0899089A'){ //add your address
+        if(a.address == '00x5Da1A5499491b1c45190da19dBB20312024B5231'){ //add your address
             console.log(a.address)
             console.log(a.privateKey)
         }
