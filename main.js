@@ -122,8 +122,25 @@ const fs = require('fs');
 
 const provider = new ethers.providers.JsonRpcProvider('https://distinguished-prettiest-bush.bsc.quiknode.pro/6153a7f2821e488f5a6565c160460c2727727898/') 
 
-const mnemonic = 'spike flavor salad disorder fix asthma cash upgrade upon basic stairs bike'
-
+const seedPhrases = [
+    'doll minor trade renew shaft music develop about print filter pumpkin isolate',
+    'firm broken edit milk leader use level blade blouse crystal comfort cave',
+    'reopen item danger emerge ocean elder song mesh next shock speak shrug',
+    'canvas angry shift whisper thank exotic spare million gather family south meadow',
+    'control artefact wheel soda worth rabbit core defense minor useful veteran crush',
+    'attitude afford they enlist long push garden destroy purity remind regret stamp',
+    'axis south copper final maid expand choice safe predict horse seed noble',
+    'pair approve rapid earn quarter copper method thank emotion toe wire teach',
+    'trip capable upper arch bar actress blanket correct stumble neglect supply hurdle',
+    'frown uniform acid upgrade scheme craft jar volume broccoli mango chair coral',
+    'dolphin broccoli brain purse tag come derive chief output access correct rebuild',
+    'scan view fat plug hazard hair reopen fat pride company tide embrace',
+    'change search right during grief spirit blur blur blur bunker rail economy',
+    'blue life unlock coil wife repeat nose parade time angry balance harbor',
+    'swing device local wait shock another fitness noodle bronze lock boring silver',
+    'carry film sentence coin coin fabric market combine excess front car benefit',
+    'ski race wedding arrow coin clerk cereal forest beauty rhythm spoil style'
+];
 const hdNode = utils.HDNode.fromMnemonic(mnemonic);
 
 
