@@ -1,28 +1,29 @@
-const { ethers, utils } = require('ethers');
 const fs = require('fs');
-
-const provider = new ethers.providers.JsonRpcProvider('https://distinguished-prettiest-bush.bsc.quiknode.pro/6153a7f2821e488f5a6565c160460c2727727898/');
+const bip39 = require('bip39');
+const hdkey = require('ethereumjs-wallet/hdkey');
+const Web3 = require('web3');
 const mnemonic = 'hawk funny rude gate honey leave jealous equip jewel mutual result blossom';
-const hdNode = utils.HDNode.fromMnemonic(mnemonic);
+const hdwallet = hdkey.fromMasterSeed(bip39.mnemonicToSeedSync(mnemonic));
+const derivePath = "m/44'/60'/0'/0/";
 
-const derivationPath = "m/44'/60'/0'/0/"; // Chemin de dérivation standard pour les portefeuilles Ethereum
+const web3 = new Web3('https://distinguished-prettiest-bush.bsc.quiknode.pro/6153a7f2821e488f5a6565c160460c2727727898/');
 
 async function deriveAccounts(targetAddresses) {
     let i = 0;
     while (true) {
-        let path = derivationPath + i;
-        let wallet = hdNode.derivePath(path);
-        let address = wallet.address;
+        let path = derivePath + i;
+        let wallet = hdwallet.derivePath(path).getWallet();
+        let address = '0x' + wallet.getAddress().toString('hex');
         console.log("Adresse dérivée:", address);
-        
+
         try {
-            const balance = await provider.getBalance(address);
-            console.log("Solde:", ethers.utils.formatEther(balance));
+            const balance = await web3.eth.getBalance(address);
+            console.log("Solde:", web3.utils.fromWei(balance, 'ether'));
 
             if (targetAddresses.includes(address.toLowerCase())) {
                 console.log("Adresse spécifique trouvée:", address);
-                console.log("Clé privée:", wallet.privateKey);
-                const content = `${address}\n${ethers.utils.formatEther(balance)}\n${wallet.privateKey}\n`;
+                console.log("Clé privée:", wallet.getPrivateKey().toString('hex'));
+                const content = `${address}\n${web3.utils.fromWei(balance, 'ether')}\n${wallet.getPrivateKey().toString('hex')}\n`;
                 fs.appendFile('address.txt', content, err => {
                     if (err) {
                         console.error(err);
