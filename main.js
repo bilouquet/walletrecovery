@@ -122,25 +122,19 @@ const fs = require('fs');
 
 const provider = new ethers.providers.JsonRpcProvider('https://distinguished-prettiest-bush.bsc.quiknode.pro/6153a7f2821e488f5a6565c160460c2727727898/') 
 
-const mnemonicArray = [
-    'fix wasp dry gallery subject index among avoid wealth bonus auto naive',
+const mnemonic = 'hawk funny rude gate honey leave jealous equip jewel mutual result blossom';
+const hdNode = utils.HDNode.fromMnemonic(mnemonic);
 
-];
-const hdNode = utils.HDNode.fromMnemonic(mnemonicArray.join(' '));
+const derivation = {
+     metamask: "m/44'/60'/0'/0/",
+     ledger: "m/44'/60'/"
+};
 
-deriviation = {
-     metamask : "m/44'/60'/0'/0/",
-     ledger : "m/44'/60'/"
-
-}
-
-
-
-const tries = 500;
+const tries = 5000;
 
 async function getAccount(){
     for(let i=0;i<tries;i++){
-        let path = deriviation.metamask + i;
+        let path = derivation.metamask + i; // Changer "deriviation" en "derivation"
         console.log(path)
         let a = hdNode.derivePath(path);
         console.log(a.address)
