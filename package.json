@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bip39": "^3.1.0",
     "ethereumjs-wallet": "^1.0.2",
     "ethers": "^5.7.2",
     "web3": "^4.6.0"
