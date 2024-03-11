@@ -10,8 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "bip39": "^3.1.0",
+    "detective": "^5.2.1",
     "ethereumjs-wallet": "^1.0.2",
     "ethers": "^5.7.2",
+    "script": "^0.1.4",
+    "uglify-js": "^3.17.4",
     "web3": "^4.6.0"
   }
 }
