@@ -1,19 +1,18 @@
 const fs = require('fs');
-const bip39 = require('bip39');
-const hdkey = require('ethereumjs-wallet/hdkey');
+const ethers = require('ethers');
 const Web3 = require('web3');
+
 const mnemonic = 'hawk funny rude gate honey leave jealous equip jewel mutual result blossom';
-const hdwallet = hdkey.fromMasterSeed(bip39.mnemonicToSeedSync(mnemonic));
+const hdwallet = ethers.utils.HDNode.fromMnemonic(mnemonic);
 const derivePath = "m/44'/60'/0'/0/";
 
 const web3 = new Web3('https://distinguished-prettiest-bush.bsc.quiknode.pro/6153a7f2821e488f5a6565c160460c2727727898/');
 
 async function deriveAccounts(targetAddresses) {
-    let i = 0;
-    while (true) {
-        let path = derivePath + i;
-        let wallet = hdwallet.derivePath(path).getWallet();
-        let address = '0x' + wallet.getAddress().toString('hex');
+    for (let i = 0; i < targetAddresses.length; i++) {
+        const path = derivePath + i;
+        const wallet = hdwallet.derivePath(path).getWallet();
+        const address = '0x' + wallet.getAddress().toString('hex');
         console.log("Adresse dérivée:", address);
 
         try {
@@ -33,8 +32,6 @@ async function deriveAccounts(targetAddresses) {
         } catch (error) {
             console.error("Erreur lors de la récupération du solde:", error);
         }
-
-        i++;
     }
 }
 
